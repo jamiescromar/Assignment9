@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "List of Movies";
+}
+
+@model IEnumerable<Assignment9.Models.Movie>
+
+<h1>@ViewBag.Title</h1>
+<table>
+    <thead>
+        <tr>
+            <!--This is creating the headers of the table-->
+            <th style="padding-left:8px; padding-right:8px;">Category</th>
+            <th style="padding-left:8px; padding-right:8px;">Title</th>
+            <th style="padding-left:8px; padding-right:8px;">Year</th>
+            <th style="padding-left:8px; padding-right:8px;">Director</th>
+            <th style="padding-left:8px; padding-right:8px;">Rating</th>
+            <th style="padding-left:8px; padding-right:8px;">Edited</th>
+            <th style="padding-left:8px; padding-right:8px;">Lent To</th>
+            <th style="padding-left:8px; padding-right:8px;">Notes</th>
+            <th style="padding-left:8px; padding-right:8px;">Edit Button</th>
+            <th style="padding-left:8px; padding-right:8px;">Remove Button</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            @if (x.Title != "Independence Day")
+            {
+                <tr>
+                    <!--This is assigning the model variables to the list so that it can be seen in this view-->
+                    <td style="padding-left:8px; padding-right:8px;">@x.Category</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Title</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Year</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Director</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Rating</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Edited</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.LentTo</td>
+                    <td style="padding-left:8px; padding-right:8px;">@x.Notes</td>
+                    <td>
+                        <!--This is creating an action that creates a button that will allows us to edit the record-->
+                        @Html.ActionLink("Edit", "EditMovie", new { id = x.MovieId }, new { @class = "btn btn-sm btn-primary" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remove", "Remove", new { id = x.MovieId }, new { @class = "btn btn-sm btn-primary" })
+                    </td>
+                </tr>
+            }}
+    </tbody>
+</table>
